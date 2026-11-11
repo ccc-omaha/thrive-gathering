@@ -1,0 +1,70 @@
+{
+  "eyebrow": "The Details",
+  "heading": "Make a weekend of it.",
+  "cards": [
+    {
+      "label": "When",
+      "title": "February 5 & 6, 2027",
+      "text": "Friday 7–9 PM\nSaturday 9 AM–12:30 PM"
+    },
+    {
+      "label": "Where",
+      "title": "Christ Community Church",
+      "text": "Worship Center\n404 S 108th Ave, Omaha, NE 68154\n[Get directions](https://maps.google.com/?q=404+S+108th+Ave+Omaha+NE+68154)"
+    },
+    {
+      "label": "Cost",
+      "title": "$80",
+      "text": "One ticket covers the full weekend: all three sessions, Friday’s dessert bar and Saturday refreshments. Non-refundable."
+    },
+    {
+      "label": "Who",
+      "title": "Women 16+",
+      "text": "Join us on your own, or bring your mom, your daughter, your small group or a friend who hasn't been to church in a while."
+    }
+  ],
+  "days": [
+    {
+      "label": "Friday · Feb 5",
+      "items": [
+        {
+          "time": "6:00 PM",
+          "text": "Doors open"
+        },
+        {
+          "time": "7:00 PM",
+          "text": "Worship and Session One with Lisa Harper"
+        },
+        {
+          "time": "After",
+          "text": "Dessert bar"
+        }
+      ]
+    },
+    {
+      "label": "Saturday · Feb 6",
+      "items": [
+        {
+          "time": "8:30 AM",
+          "text": "Doors open"
+        },
+        {
+          "time": "9:00 AM",
+          "text": "Worship and Session Two"
+        },
+        {
+          "time": "Break",
+          "text": "Refreshments"
+        },
+        {
+          "time": "After",
+          "text": "Session Three"
+        },
+        {
+          "time": "12:30 PM",
+          "text": "Wrap up"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,363 @@
+# Pages CMS configuration for thethrivegathering.com
+# Saving commits to GitHub; Netlify rebuilds the page (about 1 minute).
+# Formatting in text boxes: *italic*, [link text](https://...), and Enter for a new line.
+
+settings:
+  commit:
+    identity: user
+
+media:
+  input: public/assets
+  output: /assets
+  rename: safe
+  extensions: [jpg, jpeg, png, webp]
+
+content:
+  # ---------------------------------------------------------------
+  - name: top
+    label: "1. Top of page"
+    type: file
+    path: content/top.json
+    format: json
+    fields:
+      - name: label
+        label: First line
+        type: string
+        description: "Bold line under the Thrive logo, left of the divider."
+      - name: speakerName
+        label: Speaker name
+        type: string
+        description: "Shows after 'Featuring' in the italic serif."
+      - name: dateText
+        label: Dates
+        type: string
+        description: "Example: February 5 & 6, 2027"
+      - name: placeText
+        label: City
+        type: string
+      - name: secondButton
+        label: Second button text
+        type: string
+        description: "Outline button that jumps to the speaker section. The orange ticket button uses the link and price in section 8."
+
+  # ---------------------------------------------------------------
+  - name: theme
+    label: "2. Theme (Awe and Delight)"
+    type: file
+    path: content/theme.json
+    format: json
+    fields:
+      - name: eyebrow
+        label: Small label above the heading
+        type: string
+      - name: headingFirst
+        label: Heading, first word
+        type: string
+      - name: headingScript
+        label: Heading, script word
+        type: string
+        description: "Small word in the Mina script font between the two big words. Keep it lowercase."
+      - name: headingLast
+        label: Heading, last word
+        type: string
+      - name: lede
+        label: Intro paragraph
+        type: text
+      - name: words
+        label: Hebrew words
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name} ({meaning})"
+        fields:
+          - name: hebrew
+            label: Hebrew
+            type: string
+          - name: name
+            label: Transliteration
+            type: string
+          - name: meaning
+            label: Meaning
+            type: string
+          - name: text
+            label: Description
+            type: text
+      - name: verse
+        label: Verse
+        type: text
+        description: "Quote marks are added for you. Leave blank to hide the verse."
+      - name: verseRef
+        label: Verse reference
+        type: string
+
+  # ---------------------------------------------------------------
+  - name: speaker
+    label: "3. Speaker"
+    type: file
+    path: content/speaker.json
+    format: json
+    fields:
+      - name: photo
+        label: Photo
+        type: image
+        description: "Upload under 2 MB. A tall (portrait) photo works best. Large files are shrunk automatically after saving."
+      - name: photoAlt
+        label: Photo description
+        type: string
+        description: "One sentence describing the photo, for screen readers and Google."
+      - name: photoTag
+        label: Tag on photo
+        type: string
+        description: "Small label on the photo. Leave blank to hide."
+      - name: eyebrow
+        label: Small label above the name
+        type: string
+      - name: name
+        label: Name
+        type: string
+        description: "Also used in Google's event listing as the performer."
+      - name: bio
+        label: Bio paragraphs
+        type: text
+        list: true
+      - name: quote
+        label: Quote
+        type: text
+        description: "Quote marks are added for you. Leave blank to hide."
+      - name: highlights
+        label: Highlights
+        type: string
+        list: true
+        description: "Short tags under the bio, like '17 books'."
+      - name: linkText
+        label: Link text
+        type: string
+      - name: linkUrl
+        label: Link URL
+        type: string
+
+  # ---------------------------------------------------------------
+  - name: details
+    label: "4. Details and schedule"
+    type: file
+    path: content/details.json
+    format: json
+    fields:
+      - name: eyebrow
+        label: Small label above the heading
+        type: string
+      - name: heading
+        label: Heading
+        type: string
+      - name: cards
+        label: Info cards (When, Where, Cost, Who)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{label}: {title}"
+        fields:
+          - name: label
+            label: Small label
+            type: string
+          - name: title
+            label: Big line
+            type: string
+          - name: text
+            label: Details
+            type: text
+      - name: days
+        label: Schedule
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{label}"
+        fields:
+          - name: label
+            label: Day
+            type: string
+            description: "Example: Friday · Feb 5"
+          - name: items
+            label: Schedule items
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{time}  {text}"
+            fields:
+              - name: time
+                label: Time
+                type: string
+                description: "A time like 7:00 PM, or a word like After or Break."
+              - name: text
+                label: What's happening
+                type: string
+
+  # ---------------------------------------------------------------
+  - name: parking
+    label: "5. Parking"
+    type: file
+    path: content/parking.json
+    format: json
+    fields:
+      - name: eyebrow
+        label: Small label above the heading
+        type: string
+      - name: heading
+        label: Heading
+        type: string
+      - name: text
+        label: Paragraph
+        type: text
+      - name: address
+        label: Address
+        type: text
+      - name: directionsUrl
+        label: Directions link
+        type: string
+        description: "The parking map itself is artwork and can't be edited here. Ask Eric for map changes."
+
+  # ---------------------------------------------------------------
+  - name: scholarships
+    label: "6. Scholarships"
+    type: file
+    path: content/scholarships.json
+    format: json
+    fields:
+      - name: eyebrow
+        label: Small label above the heading
+        type: string
+      - name: heading
+        label: Heading
+        type: string
+      - name: text
+        label: Paragraph
+        type: text
+      - name: buttonText
+        label: Button text
+        type: string
+        description: "The button goes to the ticket link in section 8."
+
+  # ---------------------------------------------------------------
+  - name: faq
+    label: "7. FAQ"
+    type: file
+    path: content/faq.json
+    format: json
+    fields:
+      - name: eyebrow
+        label: Small label above the heading
+        type: string
+      - name: heading
+        label: Heading
+        type: string
+      - name: items
+        label: Questions
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{question}"
+        fields:
+          - name: question
+            label: Question
+            type: string
+          - name: answer
+            label: Answer
+            type: text
+
+  # ---------------------------------------------------------------
+  - name: settings
+    label: "8. Tickets, dates and Google"
+    type: file
+    path: content/settings.json
+    format: json
+    fields:
+      - name: ticketUrl
+        label: Ticket link
+        type: string
+        description: "Every Get Tickets and Register button on the page uses this link."
+      - name: price
+        label: Ticket price
+        type: string
+        description: "Number only, like 80. Shows on the top ticket button and in Google's listing. The Cost card and FAQ answers are written by hand, so update those too."
+      - name: startDate
+        label: Start date
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: startTime
+        label: Start time
+        type: string
+        description: "Format like 7:00 PM. Central time. Used for Google's event listing only."
+        pattern:
+          regex: "^\\d{1,2}:\\d{2} ?[AaPp][Mm]$"
+          message: "Use a format like 7:00 PM"
+      - name: endDate
+        label: End date
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: endTime
+        label: End time
+        type: string
+        pattern:
+          regex: "^\\d{1,2}:\\d{2} ?[AaPp][Mm]$"
+          message: "Use a format like 12:30 PM"
+      - name: eventName
+        label: Event name (Google)
+        type: string
+      - name: eventDescription
+        label: Event description (Google)
+        type: text
+      - name: seoTitle
+        label: Browser tab and Google title
+        type: string
+      - name: seoDescription
+        label: Google description
+        type: text
+        description: "The gray text under the title in search results. About 150 to 160 characters."
+      - name: shareTitle
+        label: Share title
+        type: string
+        description: "Title shown when the link is shared in a text or on social."
+      - name: shareDescription
+        label: Share description
+        type: text
+      - name: shareImage
+        label: Share image
+        type: image
+        description: "1200 x 630 JPG. Shows when the link is shared."
+
+  # ---------------------------------------------------------------
+  - name: footer
+    label: "9. Footer"
+    type: file
+    path: content/footer.json
+    format: json
+    fields:
+      - name: blurb
+        label: Blurb under the logo
+        type: text
+      - name: location
+        label: Location
+        type: text
+      - name: contactName
+        label: Contact name
+        type: string
+      - name: contactEmail
+        label: Contact email
+        type: string
+      - name: contactPhone
+        label: Contact phone
+        type: string
+        description: "Format like 402.330.3360"
+      - name: instagram
+        label: Instagram handle
+        type: string
+        description: "Without the @"
+      - name: fineprint
+        label: Fine print
+        type: string

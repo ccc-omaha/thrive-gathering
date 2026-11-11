@@ -1,0 +1,44 @@
+# Automatically shrinks oversized photos uploaded through Pages CMS.
+# The bot's own commit does not re-trigger this workflow (GitHub rule
+# for GITHUB_TOKEN pushes), so there is no loop.
+name: Optimize images
+
+on:
+  push:
+    paths:
+      - "public/assets/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: optimize-images-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install --quiet pillow
+
+      - run: python .github/scripts/optimize_images.py
+
+      - name: Commit smaller files
+        run: |
+          if git diff --quiet -- public/assets; then
+            echo "Nothing to optimize."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets
+          git commit -m "Optimize uploaded images"
+          git pull --rebase
+          git push

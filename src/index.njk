@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ settings.seoTitle }}</title>
+<meta name="description" content="{{ settings.seoDescription }}">
+<link rel="canonical" href="{{ site.url }}/">
+<meta name="theme-color" content="#6FAABF">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ site.url }}/">
+<meta property="og:title" content="{{ settings.shareTitle }}">
+<meta property="og:description" content="{{ settings.shareDescription }}">
+<meta property="og:image" content="{{ shareImageAbs }}">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<!-- Adobe Fonts (CCC kit): Proxima Nova, IvyPresto Display, Mina. thethrivegathering.com must be listed in the kit's domains. -->
+<link rel="stylesheet" href="https://use.typekit.net/ohw6ayv.css">
+
+<script type="application/ld+json">
+{{ event | jsonscript }}
+</script>
+<script type="application/ld+json">
+{{ faqSchema | jsonscript }}
+</script>
+
+<style>
+{{ "styles.css" | file }}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="nav-logo" href="#top" aria-label="Thrive home"><img src="assets/flower.png" alt=""><span>THRIVE</span></a>
+    <ul>
+      <li><a href="#theme">Theme</a></li>
+      <li><a href="#speaker">Speaker</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a class="btn btn-orange" href="{{ settings.ticketUrl }}">Get Tickets</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero grain" id="top">
+  <div class="hero-pattern" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <h1><img class="hero-mark" src="assets/thrive-wordmark-white.png" alt="Thrive"></h1>
+    <p class="hero-sub"><span>{{ top.label }}</span> <span class="sep">|</span> <span>Featuring <i>{{ top.speakerName }}</i></span></p>
+    <div class="hero-date"><span>{{ top.dateText }}</span><span class="dot"></span><span>{{ top.placeText }}</span></div>
+    <div class="hero-ctas">
+      <a class="btn btn-orange" href="{{ settings.ticketUrl }}">Get Tickets &middot; ${{ settings.price }}</a>
+      <a class="btn btn-ghost" href="#speaker">{{ top.secondButton }}</a>
+    </div>
+  </div>
+  <img class="hero-corner l" src="assets/floral-corner-l.webp" alt="" aria-hidden="true">
+  <img class="hero-corner r" src="assets/floral-corner-r.webp" alt="" aria-hidden="true">
+</header>
+
+<div class="stripes" aria-hidden="true"></div>
+
+<section class="theme" id="theme">
+  <div class="wrap">
+    <p class="eyebrow reveal">{{ theme.eyebrow }}</p>
+    <h2 class="reveal">{{ theme.headingFirst }} <span class="script mina">{{ theme.headingScript }}</span> {{ theme.headingLast }}</h2>
+    <p class="theme-lede reveal">{{ theme.lede | md }}</p>
+
+    <div class="hebrew">
+      {%- for w in theme.words %}
+      <article class="word reveal">
+        <div class="he" lang="he">{{ w.hebrew }}</div>
+        <h3>{{ w.name }}</h3>
+        <p class="gloss">{{ w.meaning }}</p>
+        <p>{{ w.text | md }}</p>
+      </article>
+      {%- endfor %}
+    </div>
+
+    {%- if theme.verse %}
+    <div class="verse reveal">
+      <blockquote>&ldquo;{{ theme.verse }}&rdquo;</blockquote>
+      <cite>{{ theme.verseRef }}</cite>
+    </div>
+    {%- endif %}
+  </div>
+</section>
+
+<section class="speaker grain" id="speaker">
+  <div class="wrap">
+    <div class="speaker-photo reveal">
+      <img src="{{ speaker.photo }}" alt="{{ speaker.photoAlt }}" width="{{ photo.width }}" height="{{ photo.height }}">
+      {%- if speaker.photoTag %}
+      <span class="tag">{{ speaker.photoTag }}</span>
+      {%- endif %}
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">{{ speaker.eyebrow }}</p>
+      <h2>{{ speaker.name }}</h2>
+      {%- for p in speaker.bio %}
+      <p>{{ p | md }}</p>
+      {%- endfor %}
+      {%- if speaker.quote %}
+      <p class="quote">&ldquo;{{ speaker.quote }}&rdquo;</p>
+      {%- endif %}
+      {%- if speaker.highlights and speaker.highlights.length %}
+      <div class="meta">{% for h in speaker.highlights %}<span>{{ h }}</span>{% endfor %}</div>
+      {%- endif %}
+      {%- if speaker.linkUrl %}
+      <a class="link-arrow" href="{{ speaker.linkUrl }}" target="_blank" rel="noopener">{{ speaker.linkText }} &rarr;</a>
+      {%- endif %}
+    </div>
+  </div>
+</section>
+
+<section class="details grain" id="details">
+  <div class="wrap">
+    <div class="details-head reveal">
+      <p class="eyebrow">{{ details.eyebrow }}</p>
+      <h2>{{ details.heading }}</h2>
+    </div>
+    <div class="cards">
+      {%- for c in details.cards %}
+      <div class="card reveal">
+        <p class="eyebrow">{{ c.label }}</p>
+        <h3>{{ c.title }}</h3>
+        <p>{{ c.text | md }}</p>
+      </div>
+      {%- endfor %}
+    </div>
+
+    <div class="sched">
+      {%- for d in details.days %}
+      <div class="day reveal">
+        <p class="eyebrow">{{ d.label }}</p>
+        <ol>
+          {%- for i in d.items %}
+          <li><span>{{ i.time }}</span>{{ i.text }}</li>
+          {%- endfor %}
+        </ol>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="arrive" id="parking">
+  <div class="wrap">
+    <div class="arrive-text reveal">
+      <p class="eyebrow">{{ parking.eyebrow }}</p>
+      <h2>{{ parking.heading }}</h2>
+      <p>{{ parking.text | md }}</p>
+      <p class="addr">{{ parking.address | md }}</p>
+      <a class="link-arrow dark" href="{{ parking.directionsUrl }}" target="_blank" rel="noopener">Get directions &rarr;</a>
+    </div>
+    <div class="arrive-map reveal">
+      <div class="map-tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-view="art">Parking map</button>
+        <button role="tab" aria-selected="false" data-view="live">Google Maps</button>
+      </div>
+{{ "parking-map.html" | file }}
+      <div class="map-legend"><span><i class="lg-p">P</i>Parking</span><span><i class="lg-e"></i>Front entrance</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="garden">
+  <div class="garden-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="garden-card reveal">
+      <p class="eyebrow">{{ scholarships.eyebrow }}</p>
+      <h2>{{ scholarships.heading }}</h2>
+      <p>{{ scholarships.text | md }}</p>
+      <a class="btn btn-forest" href="{{ settings.ticketUrl }}">{{ scholarships.buttonText }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="faq-head">
+      <p class="eyebrow">{{ faq.eyebrow }}</p>
+      <h2>{{ faq.heading }}</h2>
+    </div>
+    {%- for f in faq.items %}
+    <details>
+      <summary>{{ f.question }}</summary>
+      <p>{{ f.answer | md }}</p>
+    </details>
+    {%- endfor %}
+    </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img class="mark" src="assets/thrive-wordmark-white.png" alt="Thrive">
+      <p>{{ footer.blurb }}</p>
+    </div>
+    <div>
+      <h4>Location</h4>
+      <p>{{ footer.location | md }}</p>
+    </div>
+    <div>
+      <h4>Questions</h4>
+      <p>{{ footer.contactName }}<br><a href="mailto:{{ footer.contactEmail }}">{{ footer.contactEmail }}</a><br><a href="tel:+1{{ footer.contactPhone | replace('.', '') | replace('-', '') | replace(' ', '') }}">{{ footer.contactPhone }}</a></p>
+      <h4 style="margin-top:22px">Follow</h4>
+      <p><a href="https://instagram.com/{{ footer.instagram }}" target="_blank" rel="noopener">@{{ footer.instagram }}</a><br><a href="https://cccomaha.org" target="_blank" rel="noopener">cccomaha.org</a></p>
+    </div>
+    <p class="fine">{{ footer.fineprint }}</p>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>window.innerHeight*0.6);
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const ms=document.querySelector('.map-scroll');if(ms&&innerWidth<=640)addEventListener("load",()=>{ms.scrollLeft=170});
+  document.querySelectorAll('.map-tabs button').forEach(btn=>btn.addEventListener('click',()=>{
+    const v=btn.dataset.view;
+    document.querySelectorAll('.map-tabs button').forEach(b=>b.setAttribute('aria-selected',b===btn));
+    document.querySelectorAll('.map-view').forEach(el=>el.classList.toggle('is-on',el.dataset.view===v));
+    const f=document.querySelector('.map-view[data-view="live"] iframe');
+    if(v==='live'&&!f.src)f.src=f.dataset.src;
+  }));
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "thrive-gathering",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "nunjucks": "^3.2.4",
+    "sharp": "^0.33.5"
+  },
+  "engines": { "node": ">=20" }
+}
