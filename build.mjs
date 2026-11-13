@@ -19,13 +19,16 @@ const C = Object.fromEntries(
 
 /* ---------- helpers ---------- */
 const esc = t => String(t ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-// Tiny inline formatting for staff: *italic*, [link text](url) and line breaks
+// Tiny inline formatting for staff: **bold**, *italic*, [link text](url) and line breaks.
+// The last two words are tied together so a paragraph never ends on one orphaned word.
 const md = t => esc(t)
   .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+|mailto:[^)\s]+|tel:[^)\s]+|\/[^)\s]*|#[^)\s]*)\)/g, (_, txt, url) =>
     url.startsWith("http") ? `<a href="${url}" target="_blank" rel="noopener">${txt}</a>` : `<a href="${url}">${txt}</a>`)
+  .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
   .replace(/\*([^*]+)\*/g, "<em>$1</em>")
-  .replace(/\n/g, "<br>");
-const plain = t => String(t ?? "").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/\*([^*]+)\*/g, "$1").replace(/\n/g, " ");
+  .replace(/\n/g, "<br>")
+  .replace(/ ([^\s<>]{1,14})((?:<\/[a-z]+>)*)$/i, "&nbsp;$1$2");
+const plain = t => String(t ?? "").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/\*+([^*]+)\*+/g, "$1").replace(/\n/g, " ");
 const jsonscript = v => JSON.stringify(v, null, 2).replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
 
 function parseTime(t) {

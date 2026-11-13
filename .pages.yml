@@ -1,6 +1,6 @@
 # Pages CMS configuration for thethrivegathering.com
 # Saving commits to GitHub; Netlify rebuilds the page (about 1 minute).
-# Formatting in text boxes: *italic*, [link text](https://...), and Enter for a new line.
+# Formatting in text boxes: **bold**, *italic*, [link text](https://...), and Enter for a new line.
 
 settings:
   commit:
@@ -34,6 +34,7 @@ content:
         description: "Example: February 5 & 6, 2027"
       - name: placeText
         label: City
+        description: Shows after the dates in the line under the logo, for example Omaha, NE.
         type: string
       - name: secondButton
         label: Second button text
@@ -49,9 +50,11 @@ content:
     fields:
       - name: eyebrow
         label: Small label above the heading
+        description: The small all-caps line above the Awe and Delight heading.
         type: string
       - name: headingFirst
         label: Heading, first word
+        description: The big word before the script word in the theme heading.
         type: string
       - name: headingScript
         label: Heading, script word
@@ -59,12 +62,15 @@ content:
         description: "Small word in the Mina script font between the two big words. Keep it lowercase."
       - name: headingLast
         label: Heading, last word
+        description: The big word after the script word in the theme heading.
         type: string
       - name: lede
         label: Intro paragraph
+        description: The paragraph under the theme heading. Use **bold**, *italic* or [link text](https://...).
         type: text
       - name: words
         label: Hebrew words
+        description: The Hebrew word cards under the theme intro, in order.
         type: object
         list:
           collapsible:
@@ -73,15 +79,19 @@ content:
         fields:
           - name: hebrew
             label: Hebrew
+            description: The large Hebrew letters at the top of the card.
             type: string
           - name: name
             label: Transliteration
+            description: How the word sounds, shown under the Hebrew letters.
             type: string
           - name: meaning
             label: Meaning
+            description: The English meaning, shown in bold on the card.
             type: string
           - name: text
             label: Description
+            description: The short paragraph at the bottom of the card.
             type: text
       - name: verse
         label: Verse
@@ -89,6 +99,7 @@ content:
         description: "Quote marks are added for you. Leave blank to hide the verse."
       - name: verseRef
         label: Verse reference
+        description: Shown under the verse, for example Psalm 46:10.
         type: string
 
   # ---------------------------------------------------------------
@@ -112,6 +123,7 @@ content:
         description: "Small label on the photo. Leave blank to hide."
       - name: eyebrow
         label: Small label above the name
+        description: The small all-caps line above the speaker's name.
         type: string
       - name: name
         label: Name
@@ -119,6 +131,7 @@ content:
         description: "Also used in Google's event listing as the performer."
       - name: bio
         label: Bio paragraphs
+        description: Paragraphs next to the speaker photo. One paragraph per item.
         type: text
         list: true
       - name: quote
@@ -132,9 +145,11 @@ content:
         description: "Short tags under the bio, like '17 books'."
       - name: linkText
         label: Link text
+        description: The text of the arrow link under the bio, for example Visit her website.
         type: string
       - name: linkUrl
         label: Link URL
+        description: Where that arrow link goes. Paste the full https:// address.
         type: string
 
   # ---------------------------------------------------------------
@@ -146,12 +161,15 @@ content:
     fields:
       - name: eyebrow
         label: Small label above the heading
+        description: The small all-caps line above the details heading.
         type: string
       - name: heading
         label: Heading
+        description: The big heading at the top of the details and schedule section.
         type: string
       - name: cards
         label: Info cards (When, Where, Cost, Who)
+        description: The four info cards under the heading, in order.
         type: object
         list:
           collapsible:
@@ -160,15 +178,19 @@ content:
         fields:
           - name: label
             label: Small label
+            description: The small all-caps word at the top of the card, like WHEN.
             type: string
           - name: title
             label: Big line
+            description: The large line on the card.
             type: string
           - name: text
             label: Details
+            description: The smaller text under the large line.
             type: text
       - name: days
         label: Schedule
+        description: The schedule, one item per day.
         type: object
         list:
           collapsible:
@@ -181,6 +203,7 @@ content:
             description: "Example: Friday · Feb 5"
           - name: items
             label: Schedule items
+            description: The times and activities for this day, in order.
             type: object
             list:
               collapsible:
@@ -193,6 +216,7 @@ content:
                 description: "A time like 7:00 PM, or a word like After or Break."
               - name: text
                 label: What's happening
+                description: What happens at that time, shown next to it.
                 type: string
 
   # ---------------------------------------------------------------
@@ -204,15 +228,19 @@ content:
     fields:
       - name: eyebrow
         label: Small label above the heading
+        description: The small all-caps line above the parking heading.
         type: string
       - name: heading
         label: Heading
+        description: The big heading in the parking section.
         type: string
       - name: text
         label: Paragraph
+        description: The paragraph next to the parking map.
         type: text
       - name: address
         label: Address
+        description: Shown under the paragraph. Press Enter for a new line.
         type: text
       - name: directionsUrl
         label: Directions link
@@ -228,12 +256,15 @@ content:
     fields:
       - name: eyebrow
         label: Small label above the heading
+        description: The small all-caps line above the scholarships heading.
         type: string
       - name: heading
         label: Heading
+        description: The big heading in the scholarships section.
         type: string
       - name: text
         label: Paragraph
+        description: The paragraph under the scholarships heading. Use [link text](https://...) for links.
         type: text
       - name: buttonText
         label: Button text
@@ -249,12 +280,15 @@ content:
     fields:
       - name: eyebrow
         label: Small label above the heading
+        description: The small all-caps line above the FAQ heading.
         type: string
       - name: heading
         label: Heading
+        description: The big heading above the questions.
         type: string
       - name: items
         label: Questions
+        description: The questions, in the order they appear. Drag to reorder.
         type: object
         list:
           collapsible:
@@ -263,9 +297,11 @@ content:
         fields:
           - name: question
             label: Question
+            description: The line people click to open the answer.
             type: string
           - name: answer
             label: Answer
+            description: Shown when the question is opened. Use **bold** or [link text](https://...).
             type: text
 
   # ---------------------------------------------------------------
@@ -285,6 +321,7 @@ content:
         description: "Number only, like 80. Shows on the top ticket button and in Google's listing. The Cost card and FAQ answers are written by hand, so update those too."
       - name: startDate
         label: Start date
+        description: First day of the conference. Used for Google's event listing.
         type: date
         options:
           format: yyyy-MM-dd
@@ -297,23 +334,28 @@ content:
           message: "Use a format like 7:00 PM"
       - name: endDate
         label: End date
+        description: Last day of the conference. Used for Google's event listing.
         type: date
         options:
           format: yyyy-MM-dd
       - name: endTime
         label: End time
+        description: When the last session ends, like 4:00 PM. Used for Google's event listing.
         type: string
         pattern:
           regex: "^\\d{1,2}:\\d{2} ?[AaPp][Mm]$"
           message: "Use a format like 12:30 PM"
       - name: eventName
         label: Event name (Google)
+        description: The event name Google shows in search results. Not shown on the page.
         type: string
       - name: eventDescription
         label: Event description (Google)
+        description: One or two sentences Google shows with the event. Not shown on the page.
         type: text
       - name: seoTitle
         label: Browser tab and Google title
+        description: The title in the browser tab and in Google results.
         type: string
       - name: seoDescription
         label: Google description
@@ -325,6 +367,7 @@ content:
         description: "Title shown when the link is shared in a text or on social."
       - name: shareDescription
         label: Share description
+        description: The text that appears when the link is shared in a text, email or social post.
         type: text
       - name: shareImage
         label: Share image
@@ -340,15 +383,19 @@ content:
     fields:
       - name: blurb
         label: Blurb under the logo
+        description: The short paragraph under the Thrive logo at the bottom of the page.
         type: text
       - name: location
         label: Location
+        description: The address in the footer. Press Enter for a new line.
         type: text
       - name: contactName
         label: Contact name
+        description: The contact name in the footer.
         type: string
       - name: contactEmail
         label: Contact email
+        description: The email address in the footer. It becomes a clickable link.
         type: string
       - name: contactPhone
         label: Contact phone
@@ -360,4 +407,5 @@ content:
         description: "Without the @"
       - name: fineprint
         label: Fine print
+        description: The small line at the very bottom of the page.
         type: string

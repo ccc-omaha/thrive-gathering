@@ -1,3 +1,7 @@
+/* Prevent orphaned words */
+h1,h2,h3,h4,blockquote,cite{text-wrap:balance}
+p,li,dd,summary{text-wrap:pretty}
+
 :root{
   --blue:#6FAABF;
   --blue-deep:#4F8BA1;
